@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "cypress": "^3.6.0"
+    "cypress": "^3.6.0",
+    "cypress-xpath": "^1.6.2"
   }
 }

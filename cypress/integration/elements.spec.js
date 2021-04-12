@@ -97,11 +97,13 @@ describe('Work with basic elements', () => {
             .select(['natacao', 'Corrida', 'nada'])
             //.should('have.value', '2graucomp')
         
+        //através de JQL
         cy.get('[data-testid=dataEsportes]').then($el => {
             expect($el.val()).to.be.deep.equal(['natacao', 'Corrida', 'nada'])
             expect($el.val()).to.have.length(3)
         })
 
+        //atravez de should (cy)
         cy.get('[data-testid=dataEsportes]')
             .invoke('val')
             .should('eql', ['natacao', 'Corrida', 'nada'])
