@@ -45,6 +45,7 @@ context('Misc', () => {
     }
   })
 
+  //TODO: verificar possibilidade de usar com wrap para abrir tela deslogar do usuário logado
   it('cy.focused() - get the DOM element that has focus', () => {
     // https://on.cypress.io/focused
     cy.get('.misc-form').find('#name').click()

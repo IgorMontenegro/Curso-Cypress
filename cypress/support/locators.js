@@ -28,7 +28,7 @@ const locators = {
         STATUS: '[data-test=status]',
     },
 
-    EXTRATO : {
+    EXTRATO: {
         LINHAS: '.list-group > li',
         FN_XP_BUSCA_ELEMENTO: (desc,value) => `//span[contains(., '${desc}')]/following-sibling::small[contains(., '${value}')]`,
         FN_XP_ALTERAR_ELEMENTO: conta => `//span[contains(., '${conta}')]/../../..//i[@class='fas fa-edit']`,
