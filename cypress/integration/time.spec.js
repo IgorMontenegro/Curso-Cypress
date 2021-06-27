@@ -1,13 +1,13 @@
 /// <reference types="cypress" />
 
-describe('Dinamic test', () => {
-    beforeEach(() => {
+describe('Work with time', () => {
+    before(() => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
 
     it('Going back to the past', () => {
         // cy.get('#buttonNow').click()
-        // cy.get('#resultado > span').should('contain', '12/04/2019')
+        // cy.get('#resultado > span').should('contain', '07/11/2019')
 
         // cy.clock()
         // cy.get('#buttonNow').click()
@@ -17,24 +17,25 @@ describe('Dinamic test', () => {
         cy.clock(dt.getTime())
         cy.get('#buttonNow').click()
         cy.get('#resultado > span').should('contain', '10/04/2012')
-
     })
 
     it.only('Goes to the future', () => {
         cy.get('#buttonTimePassed').click()
-        cy.get('#resultado > span').should('contain', '1618')
-        cy.get('#resultado > span').invoke('text').should('gt', 1618200100809) //gt = greatTeam
+        cy.get('#resultado > span').should('contain', '15731')
+        cy.get('#resultado > span').invoke('text').should('gt', 1573179702885)
 
         cy.clock()
         cy.get('#buttonTimePassed').click()
         cy.get('#resultado > span').invoke('text').should('lte', 0)
+        // cy.wait(1000)
+        // cy.get('#buttonTimePassed').click()
+        // cy.get('#resultado > span').invoke('text').should('lte', 1000)
 
-        cy.wait(1000)
+        cy.tick(5000)
         cy.get('#buttonTimePassed').click()
-        cy.get('#resultado > span').invoke('text').should('lte', 1000) 
-
-        cy.wait(5000)
+        cy.get('#resultado > span').invoke('text').should('gte', 5000)
+        cy.tick(10000)
         cy.get('#buttonTimePassed').click()
-        cy.get('#resultado > span').invoke('text').should('gt', 5000) 
+        cy.get('#resultado > span').invoke('text').should('gte', 15000)
     })
 })

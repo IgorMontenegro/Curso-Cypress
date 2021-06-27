@@ -1,29 +1,24 @@
 /// <reference types="cypress" />
 
-it('Teste externo...', ()=>{
+it('A external test...', () => {
 
 })
 
-//grupo
-//skip pula pacote ou teste
-//only apenas aquele teste ou pacote
-
-describe('Pacote agrupado teste...', () => {
-    describe('Grupo específico no pacote', () => {
-        it('Teste específico...', ()=>{
+describe('Should group tests...', () => {
+    describe('Should group more specific tests...', () => {
+        it('A specific test...', () => {
 
         })
-
     })
-    
-    describe.skip('Grupo específico no pacote', () => {
-        it.skip('Teste específico...', ()=>{
+
+    describe('Should group more specific tests 2...', () => {
+        it('A specific test 2 ...', () => {
 
         })
-
     })
 
-    it.only('Teste interno...', ()=>{
+
+    it('A internal test...', () => {
 
     })
 })

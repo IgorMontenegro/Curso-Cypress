@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Cypres basico', () => {
+describe('Work with alerts', () => {
     before(() => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
@@ -17,12 +17,22 @@ describe('Cypres basico', () => {
         cy.clickAlert('#alert', 'Alert Simples')
     })
 
-    it('Alert com Mock', () => {
-        const stub = cy.stub().as('alerta') //atribuindo nome e usando stub (mock)
+    it('Alert com mock', () => {
+        const stub = cy.stub().as('alerta')
         cy.on('window:alert', stub)
         cy.get('#alert').click().then(() => {
             expect(stub.getCall(0)).to.be.calledWith('Alert Simples')
         })
+    })
+
+    it('Confirm', () => {
+        cy.on('window:confirm', msg => {
+            expect(msg).to.be.equal('Confirm Simples')
+        })
+        cy.on('window:alert', msg => {
+            expect(msg).to.be.equal('Confirmado')
+        })
+        cy.get('#confirm').click()
     })
 
     it('Deny', () => {
@@ -30,11 +40,9 @@ describe('Cypres basico', () => {
             expect(msg).to.be.equal('Confirm Simples')
             return false
         })
-
         cy.on('window:alert', msg => {
             expect(msg).to.be.equal('Negado')
         })
-        
         cy.get('#confirm').click()
     })
 
@@ -42,15 +50,12 @@ describe('Cypres basico', () => {
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns('42')
         })
-
         cy.on('window:confirm', msg => {
             expect(msg).to.be.equal('Era 42?')
         })
-
         cy.on('window:alert', msg => {
             expect(msg).to.be.equal(':D')
         })
-
         cy.get('#prompt').click()
     })
 
@@ -60,11 +65,11 @@ describe('Cypres basico', () => {
         cy.get('#formCadastrar').click()
             .then(() => expect(stub.getCall(0)).to.be.calledWith('Nome eh obrigatorio'))
 
-        cy.get('#formNome').type('Igor')
+        cy.get('#formNome').type('Wagner')
         cy.get('#formCadastrar').click()
-            .then(() => expect(stub.getCall(1)).to.be.calledWith("Sobrenome eh obrigatorio"))
+            .then(() => expect(stub.getCall(1)).to.be.calledWith('Sobrenome eh obrigatorio'))
 
-        cy.get('[data-cy=dataSobrenome]').type('Montenegro')
+        cy.get('[data-cy=dataSobrenome]').type('Aquino')
         cy.get('#formCadastrar').click()
             .then(() => expect(stub.getCall(2)).to.be.calledWith('Sexo eh obrigatorio'))
 
